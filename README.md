@@ -3,6 +3,29 @@ pyctozor
 
 Easy to use CLI for picture classification
 
+Introduction
+============
+
+As a photographer and programmer, I recently encountered the following issue.
+I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS"). Pretty cool, by the way!
+
+Then, I needed to upload onto it my 350 GB of pictures taken all over the world.
+And there starts the issues!! 
+- How do I organise the pictures I have?
+- How to do it automatically ? (Yes, I am lazy...)
+
+A few answers:
+- Classify pictures from the time they were taken
+- Automatically pick it up from the file itself and put it in the right place.
+
+Few google tries did not gave any serious answer, though.
+
+So I started this 'pyctozor' tool. But I am not alone in this wonderful world of
+Open Source software. People had already done the 'bad' job.
+So here are the dependencies for pyctozor:
+- Python (hence the _py_ in pyctozor)
+- exiv2 which is a C++ library and a command line utility to manage image metadata.
+- [pyexiv2](http://tilloy.net/dev/pyexiv2/ "pyexiv2") which is python binding to exiv2 
 
 LICENCE
 =======
