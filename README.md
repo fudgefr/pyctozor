@@ -27,6 +27,12 @@ So here are the dependencies for pyctozor:
 - exiv2 which is a C++ library and a command line utility to manage image metadata.
 - [pyexiv2](http://tilloy.net/dev/pyexiv2/ "pyexiv2") which is python binding to exiv2 
 
+TODO
+====
+- Almost everything
+- First version should be able at least to copy pictures inside a directory where year/month/day tree will be built based on input from selected pictures
+- then make some more sofisticated rules to classify them
+
 LICENCE
 =======
 
