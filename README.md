@@ -22,7 +22,7 @@ Few google tries did not gave any serious answer, though, especially in the Unix
 
 So I started this 'pyctozor' tool. But I am not alone in this wonderful world of Open Source software. People had already done (some of) the 'bad' job.
 So here are the dependencies for pyctozor:
-- Python (hence the _py_ in pyctozor)
+- Python 2.7 (hence the _py_ in pyctozor), python 3.0 not yet supported (not tested so far).
 - exiv2 which is a C++ library and a command line utility to manage image metadata.
 - [pyexiv2](http://tilloy.net/dev/pyexiv2/ "pyexiv2") which is python binding to exiv2 
 
