@@ -31,6 +31,8 @@ TODO
 - Almost everything
 - First version should be able at least to copy pictures inside a directory where year/month/day tree will be built based on input from selected pictures
 - then make some more sofisticated rules to classify them
+- use rsync to copy/synchronized pictures files
+- dry-run with printing of what would be done
 
 LICENCE
 =======
