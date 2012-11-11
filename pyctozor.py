@@ -60,8 +60,16 @@ def FolderRead(rootdir=None,extension=None,callback=None):
 				file_metadata.read()
 				if options.verbose:
 					print "File %s EXIF metadata are %s" % (f,file_metadata["Exif.Image.DateTime"].value)
-				tag=file_metadata["Exif.Image.DateTime"]
-				new_file_path=os.path.join(dest_dir,str(tag.value.year),str(tag.value.month),str(tag.value.day))
+				tag_root='file_metadata["Exif.Image.DateTime"]'
+				tag_value_list=['%s.value.year' %tag_root,
+					'%s.value.month' %tag_root,
+					'%s.value.day' %tag_root]
+
+				format_path='%s'
+				for p in tag_value_list[1:]:
+					format_path=os.path.sep.join([format_path,"%s"])
+				new_file_path = os.path.join(dest_dir,format_path % eval(','.join(tag_value_list)))
+
 				if not os.path.exists(new_file_path):
 					if not options.dryrun:
 						try:
@@ -72,14 +80,16 @@ def FolderRead(rootdir=None,extension=None,callback=None):
 						print 'mkdir %s' % new_file_path
 				if not os.path.isdir(new_file_path):
 					raise IOError, "%s already exists and is not a directory" % new_file_path
+				print 'Copy every files in %s to %s' % (root,new_file_path)
 				if options.dryrun:
-					print "cp %s %s" % (f,new_file_path)
+					print "cp %s %s" % (os.path.join(root,f),new_file_path)
 				else:
 					try:
 						shutil.copy2(os.path.join(root,f), new_file_path)
 					except shutil.Error:
 						print 'Error with copying %s to %s intercepted...' % (os.path.join(root,f),new_file_path)
-
+		for s in subFolders:
+			FolderRead(s,extension,callback)
 
 
 def main():
