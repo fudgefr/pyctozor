@@ -2,12 +2,13 @@ pyctozor
 ========
 
 Easy to use CLI for picture classification based on metadata.
+Tired of pile of pictures get all over your disks? pyctozor might help you!
 
 Introduction
 ============
 
-As a photographer and programmer, I recently encountered the following issues.
-I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool, by the way!)
+As a photographer (and developper), I recently encountered the following issues.
+I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool stuff, by the way!)
 
 Then, I needed to upload onto it my 350 GB worth of pictures (yes raw pictures mainly) taken all over the world.
 And there starts the issues!! 
@@ -22,17 +23,20 @@ Few google tries did not gave any serious answer, though, especially in the Unix
 
 So I started this 'pyctozor' tool. But I am not alone in this wonderful world of Open Source software. People had already done (some of) the 'bad' job.
 So here are the dependencies for pyctozor:
-- Python 2.7 (hence the _py_ in pyctozor), python 3.0 not yet supported (not tested so far).
-- exiv2 which is a C++ library and a command line utility to manage image metadata.
+- Python 2.6 (hence the _py_ in pyctozor), python 2.7/3.0 not supported (yet!?).
+- [exiv2](http://www.exiv2.org/ "exiv2") which is a C++ library and a command line utility to manage image metadata.
 - [pyexiv2](http://tilloy.net/dev/pyexiv2/ "pyexiv2") which is python binding to exiv2 
+
+DONE
+====
+- First version is able at least to copy pictures inside a directory where year/month/day tree will be built based on input from selected pictures (alpha-alpha-alpha: not thoroughly tested so far. DO NOT RELY ON IT! MAKE BACKUPS! BACKUPS OF BACKUPS!)
+- dry run is available.
 
 TODO
 ====
 - Almost everything
-- First version should be able at least to copy pictures inside a directory where year/month/day tree will be built based on input from selected pictures
 - then make some more sofisticated rules to classify them
-- use rsync to copy/synchronized pictures files
-- dry-run with printing of what would be done
+- use rsync to copy/synchronize pictures files
 
 LICENCE
 =======
