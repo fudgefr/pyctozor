@@ -21,24 +21,24 @@ def ParseArguments(parser=None):
 	"""
 	assert parser != None, "Internal error"
 	parser.add_option("-n", "--dry-run", help="Dry run: will print what it should have done",
-			    action="store_true")
+		action="store_true")
 	parser.add_option("-v", "--verbose", help="increase output verbosity",
-			    action="store_true")
-	parser.add_option("source_dir",help="Directory where initial pictures are to be found")
-	parser.add_option("destination_dir",help="Parent directory where pictures will be copied to")
+		action="store_true")
 	if (os.name == 'posix'):
 		parser.add_option("-H", "--hardlinks", help="Use hardlinks for the whole sorting, instead of copying. Depends on platform.",action="store_true")
-	args = parser.parse_args()
-
-	assert os.path.isdir(args.source_dir), "source_dir should be a directory"
-	assert os.path.isdir(args.destination_dir), "destination_dir should be a directory"
+	(options, args) = parser.parse_args()
+	if len(args) != 2:
+		parser.error("incorrect number of arguments")
 	
-	return args
+	assert os.path.isdir(args[0]), "%s should be a directory" % str(args[0])
+	assert os.path.isdir(args[1]), "%s should be a directory" % str(args[1])
+	
+	return (options,args)
 
 def main():
 	parser = optparse.OptionParser()
-	args = ParseArguments(parser)
-	if args.verbose:
+	(options,args) = ParseArguments(parser)
+	if options.verbose:
 		print 'Verbose mode on'
 	pass
 
