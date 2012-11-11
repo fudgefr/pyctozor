@@ -18,6 +18,8 @@ except Exception, e:
 finally:
 	pass
 
+version="%prog 0.0.1"
+
 def ParseArguments(parser=None):
 	"""
 	This function takes a parser argument and return parsed arguments
@@ -100,7 +102,7 @@ def main():
 	pass
 
 usage = "usage: %prog [options] source_dir dest_dir"
-parser = optparse.OptionParser(usage=usage)
+parser = optparse.OptionParser(usage=usage,version=version)
 (options,args) = ParseArguments(parser)
 if options.verbose:
 	print 'Verbose mode on'
