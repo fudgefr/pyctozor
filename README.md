@@ -8,10 +8,10 @@ Introduction
 ============
 
 As a photographer (and developper), I recently encountered the following issues:
-<background>
+
     1- I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool stuff, by the way!)
     2- Then, I needed to upload onto it my 350 GB worth of pictures (yes raw pictures mainly) taken all over the world.
-</background>
+
 And then starts the issues!! 
 - How do I organise the pictures I have?
 - How to do it automatically ? (Yes, I am lazy...)
@@ -28,6 +28,17 @@ So here are the dependencies for pyctozor:
 - [exiv2](http://www.exiv2.org/ "exiv2") which is a C++ library and a command line utility to manage image metadata.
 - [pyexiv2](http://tilloy.net/dev/pyexiv2/ "pyexiv2") which is python binding to exiv2 
 
+As configuration file (for things such as rules to use to classify pictures), I plan to use the easiest .ini file format: easy to read, to parse, to dump, ... 
+Something like this may do the trick:
+
+    [Profile_1]
+    Master_path=Exif.Date.Year/Exif.Date.Month/Exif.Date.Day
+    Slave_path1=Exif.Focal.Length/
+
+    [Profile_2]
+    Master_path=Exif.X.Y/Exif.Z.W/Exif.I.J
+
+
 DONE
 ====
 - First version is able at least to copy pictures inside a directory where year/month/day tree will be built based on input from selected pictures (alpha-alpha-alpha: not thoroughly tested so far. DO NOT RELY ON IT! MAKE BACKUPS! BACKUPS OF BACKUPS!)
@@ -38,6 +49,8 @@ TODO
 - Almost everything
 - then make some more sofisticated rules to classify them
 - use rsync to copy/synchronize pictures files
+- Make automatic tests and do some testing, testing and yet other tests!
+
 
 LICENCE
 =======
