@@ -7,11 +7,12 @@ Tired of pile of pictures get all over your disks? pyctozor might help you!
 Introduction
 ============
 
-As a photographer (and developper), I recently encountered the following issues.
-I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool stuff, by the way!)
-
-Then, I needed to upload onto it my 350 GB worth of pictures (yes raw pictures mainly) taken all over the world.
-And there starts the issues!! 
+As a photographer (and developper), I recently encountered the following issues:
+<background>
+    1- I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool stuff, by the way!)
+    2- Then, I needed to upload onto it my 350 GB worth of pictures (yes raw pictures mainly) taken all over the world.
+</background>
+And then starts the issues!! 
 - How do I organise the pictures I have?
 - How to do it automatically ? (Yes, I am lazy...)
 
