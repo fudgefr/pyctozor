@@ -9,8 +9,8 @@ Introduction
 
 As a photographer (and developper), I recently encountered the following issues:
 
-    1- I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool stuff, by the way!)
-    2- Then, I needed to upload onto it my 350 GB worth of pictures (yes raw pictures mainly) taken all over the world.
+- I made a NAS out of a compact server and [FreeNAS](http://freenas.org/ "FreeNAS") (Pretty cool stuff, by the way!)
+- Then, I needed to upload onto it my 350 GB worth of pictures (yes raw pictures mainly) taken all over the world.
 
 And then starts the issues!! 
 - How do I organise the pictures I have?
