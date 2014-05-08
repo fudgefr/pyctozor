@@ -2,6 +2,15 @@ import os
 import sys
 import re
 import shutil
+
+__author__ = "Nicolas Fugier"
+__copyright__ = "Copyright 2012-2014 Nicolas Fugier"
+__credits__ = []
+__license__ = "GPLv3"
+__version__ = "0.0.1"
+__maintainer__ = "Nicolas Fugier"
+__status__ = "Prototype"
+
 try:
 	import optparse
 except Exception, e:
@@ -18,7 +27,7 @@ except Exception, e:
 finally:
 	pass
 
-version="%prog 0.0.1"
+version="%prog "+ __version__
 
 def ParseArguments(parser=None):
 	"""
@@ -50,6 +59,8 @@ def FolderRead(rootdir=None,extension=None,callback=None):
 	"""
 	assert rootdir!=None, "Internal Error"
 	assert extension!=None, "Internal Error"
+	if options.verbose:
+		print 'Reading %s folder' % rootdir
 
 	file_re=re.compile(extension)
 	for root, subFolders, files in os.walk(rootdir):
@@ -59,17 +70,21 @@ def FolderRead(rootdir=None,extension=None,callback=None):
 		for f in files:
 			if file_re.match(f):
 				file_metadata=pyexiv2.metadata.ImageMetadata(os.path.join(root,f))
-				file_metadata.read()
+				try:
+					file_metadata.read()
+				except IOError:
+					print 'File %s is of unknown type, ignoring' % os.path.join(root,f)
+					continue
 				if options.verbose:
 					print "File %s EXIF metadata are %s" % (f,file_metadata["Exif.Image.DateTime"].value)
-				tag_root='file_metadata["Exif.Image.DateTime"]'
+				tag_root='file_metadata["Exif.Photo.DateTimeOriginal"]'
 				tag_value_list=['%s.value.year' %tag_root,
 					'%s.value.month' %tag_root,
 					'%s.value.day' %tag_root]
 
 				format_path='%s'
 				for p in tag_value_list[1:]:
-					format_path=os.path.sep.join([format_path,"%s"])
+					format_path=os.path.sep.join([format_path,"%02d"])
 				new_file_path = os.path.join(dest_dir,format_path % eval(','.join(tag_value_list)))
 
 				if not os.path.exists(new_file_path):
@@ -82,15 +97,23 @@ def FolderRead(rootdir=None,extension=None,callback=None):
 						print 'mkdir %s' % new_file_path
 				if not os.path.isdir(new_file_path):
 					raise IOError, "%s already exists and is not a directory" % new_file_path
-				print 'Copy every files in %s to %s' % (root,new_file_path)
-				if options.dryrun:
-					print "cp %s %s" % (os.path.join(root,f),new_file_path)
+				if os.path.exists(os.path.join(new_file_path,f)):
+					if options.verbose:
+						print "File %s already exists in %s: no copy" % (f, new_file_path)
+					continue
 				else:
-					try:
-						shutil.copy2(os.path.join(root,f), new_file_path)
-					except shutil.Error:
-						print 'Error with copying %s to %s intercepted...' % (os.path.join(root,f),new_file_path)
+					if options.dryrun:
+						print "==> copy %s --> %s" % (os.path.join(root,f),new_file_path)
+					else:
+						try:
+							shutil.copy2(os.path.join(root,f), new_file_path)
+						except shutil.Error:
+							print 'Error with copying %s to %s intercepted...' % (os.path.join(root,f),new_file_path)
+		if options.verbose:
+			print 'Found subfolders are %s' % subFolders
 		for s in subFolders:
+			if options.verbose:
+				print "Dealing with subfolder %s from %s" % (s,os.path.join(os.getcwd(),rootdir))
 			FolderRead(s,extension,callback)
 
 

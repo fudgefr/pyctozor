@@ -27,3 +27,9 @@ pip-log.txt
 .mr.developer.cfg
 
 *.py~
+
+.DS_Store
+
+*.sublime-project
+
+*.sublime-workspace
